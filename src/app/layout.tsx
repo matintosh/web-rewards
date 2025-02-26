@@ -1,62 +1,62 @@
-import { poppins } from "@/consts/fonts";
-import type { Metadata } from "next";
-import { Footer } from "./_sections/footer";
-import { Navbar } from "./_sections/navbar";
-import "./globals.css";
-import styles from "./layout.module.css";
+import { poppins } from '@/consts/fonts';
+import type { Metadata } from 'next';
+import { Footer } from './_sections/footer';
+import { Navbar } from './_sections/navbar';
+import './globals.css';
+import styles from './layout.module.css';
 
 export const metadata: Metadata = {
-  title: "Recompensas",
+  title: 'Recompensas',
   description:
-    "Embeejayz recompensas del canal de twitch, basadas en el competitivo de League of Legends, en el equipo de esport T1 y en el mismo canal de Embeejayz",
-  authors: [{ name: "Gountzjs" }],
+    'Embeejayz recompensas del canal de twitch, basadas en el competitivo de League of Legends, en el equipo de esport T1 y en el mismo canal de Embeejayz',
+  authors: [{ name: 'Gountzjs' }],
   keywords: [
-    "embeejayz",
-    "twitch",
-    "twitter",
-    "patreon",
-    "t1",
-    "skt",
-    "skt t1",
-    "lck",
-    "worlds",
-    "msi",
-    "faker",
-    "league of legends",
-    "lol",
-    "x",
-    "youtube",
-    "patreon",
-    "streamlabs",
-    "marcos",
-    "bordes",
-    "rank",
-    "ranking",
-    "clasificatoria",
+    'embeejayz',
+    'twitch',
+    'twitter',
+    'patreon',
+    't1',
+    'skt',
+    'skt t1',
+    'lck',
+    'worlds',
+    'msi',
+    'faker',
+    'league of legends',
+    'lol',
+    'x',
+    'youtube',
+    'patreon',
+    'streamlabs',
+    'marcos',
+    'bordes',
+    'rank',
+    'ranking',
+    'clasificatoria',
   ],
   openGraph: {
-    title: "Embeejayz redes sociales",
+    title: 'Embeejayz redes sociales',
     description:
-      "Embeejayz recompensas del canal de Twitch, basadas en el competitivo de League of Legends, en el equipo de esport T1 y en el mismo canal de Embeejayz",
-    url: "/",
-    siteName: "Embeejayz Rewards",
-    type: "website",
+      'Embeejayz recompensas del canal de Twitch, basadas en el competitivo de League of Legends, en el equipo de esport T1 y en el mismo canal de Embeejayz',
+    url: '/',
+    siteName: 'Embeejayz Rewards',
+    type: 'website',
     images: [
       {
-        url: "/favicon.ico",
+        url: '/favicon.ico',
         width: 512,
         height: 512,
       },
     ],
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
   },
 };
 
 export const viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 
@@ -67,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${poppins.className} ${styles["body-container"]} `}>
+      <body className={`${poppins.className} ${styles['body-container']} `}>
         <Navbar />
         {children}
         <Footer />

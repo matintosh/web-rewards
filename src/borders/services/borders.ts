@@ -1,9 +1,9 @@
-import { UserBorderEntity } from "@/borders/models/entities/user-border.entity";
+import { UserBorderEntity } from '@/borders/models/entities/user-border.entity';
 
-import { rewardsApiUrl } from "@/core/client-settings";
-import { BorderSort } from "../models/enums/border-sort";
-import { BordersOrderBy } from "../models/enums/borders-order-by.enum";
-import { Pagination } from "../models/interfaces/pagination.interface";
+import { rewardsApiUrl } from '@/core/client-settings';
+import { BorderSort } from '../models/enums/border-sort';
+import { BordersOrderBy } from '../models/enums/borders-order-by.enum';
+import { Pagination } from '../models/interfaces/pagination.interface';
 
 type BordersByUsersIdProps = {
   id: string;
@@ -24,15 +24,15 @@ export const getBordersByUserId = async ({
   pagination: Pagination;
 }> => {
   const url = new URL(`${rewardsApiUrl}/api/borders/${id}`);
-  url.searchParams.append("page", page.toString());
-  if (filterByName) url.searchParams.append("filterByName", filterByName);
-  url.searchParams.append("orderBy", orderBy);
-  url.searchParams.append("sort", sort);
+  url.searchParams.append('page', page.toString());
+  if (filterByName) url.searchParams.append('filterByName', filterByName);
+  url.searchParams.append('orderBy', orderBy);
+  url.searchParams.append('sort', sort);
   const res = await fetch(url, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
   });
 

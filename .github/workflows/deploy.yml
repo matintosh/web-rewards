@@ -29,6 +29,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: "web-rewards"
-          directory: ".vercel/output/static"
-          wranglerVersion: "3"
+          projectName: 'web-rewards'
+          directory: '.vercel/output/static'
+          wranglerVersion: '3'

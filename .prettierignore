@@ -1,0 +1,7 @@
+.next
+.vercel
+.vscode
+node_modules
+.wrangler
+pnpm-lock.yaml
+public
