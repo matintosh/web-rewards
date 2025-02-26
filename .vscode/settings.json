@@ -20,12 +20,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "conventionalCommits.scopes": [
-    "web-rewards",
-    "server-rewards",
-    "bot-rewards",
+    "pages",
+    "components",
+    "services",
     "workspace",
-    "ui-kit",
-    "embee-links",
-    "web-games"
+    "hooks",
+    "shared"
   ]
 }
