@@ -32,5 +32,3 @@ jobs:
           projectName: "web-rewards"
           directory: ".vercel/output/static"
           wranglerVersion: "3"
-        env:
-          ENVIRONMENT: production
