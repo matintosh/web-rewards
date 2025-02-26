@@ -11,6 +11,16 @@ export function RewardsAvailable() {
       <h2 className={`${montserrat.className} ${styles['title-section']}`}>
         Recompensas disponibles
       </h2>
+      <p className={styles['disclaimer']}>
+        <strong className={montserrat.className}>Aviso Importante:</strong>{' '}
+        <br /> Los bordes obtenidos en esta plataforma son recompensas{' '}
+        <i>coleccionables</i> y no tienen <i>valor monetario real</i>. No pueden
+        ser comprados, vendidos, intercambiados ni canjeados por dinero, bienes
+        o servicios, ni dentro de esta aplicación ni fuera de ella. Esta
+        plataforma no está afiliada, respaldada ni operada por <b>Riot Games</b>
+        . League of Legends y todos sus activos son propiedad de{' '}
+        <b>Riot games, Inc.</b>
+      </p>
       <Slider>
         <div className={styles['border-reward']}>
           <h3 className={`${montserrat.className} ${styles['border-title']}`}>

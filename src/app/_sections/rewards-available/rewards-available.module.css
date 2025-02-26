@@ -6,6 +6,18 @@
   gap: 25px;
 }
 
+.disclaimer {
+  color: var(--ui-kit-primary-400);
+  font-weight: var(--ui-kit-font-weight-normal);
+  width: 100%;
+  max-width: 700px;
+}
+
+.disclaimer strong {
+  font-weight: var(--ui-kit-font-weight-bold);
+  font-size: 20px;
+}
+
 .title-section {
   color: var(--ui-kit-secondary-400);
   font-size: 24px;
