@@ -1,5 +1,7 @@
 import { poppins } from "@/consts/fonts";
 import type { Metadata } from "next";
+import { Footer } from "./_sections/footer";
+import { Navbar } from "./_sections/navbar";
 import "./globals.css";
 import styles from "./layout.module.css";
 
@@ -66,7 +68,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${poppins.className} ${styles["body-container"]} `}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

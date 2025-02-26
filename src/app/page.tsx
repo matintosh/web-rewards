@@ -1,9 +1,14 @@
+import { Presentation } from "./_sections/presentation";
+import { RedeemBorders } from "./_sections/redeem-borders";
+import { RewardsAvailable } from "./_sections/rewards-available";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
     <main className={styles.container}>
-      <h1>Home page</h1>
+      <Presentation />
+      <RewardsAvailable />
+      <RedeemBorders />
     </main>
   );
 }
