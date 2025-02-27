@@ -12,7 +12,18 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['embee-org.github.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'embee-org.github.io',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static-cdn.jtvnw.net',
+        pathname: '**',
+      },
+    ],
   },
 };
 
