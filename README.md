@@ -1,69 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`c3`](https://developers.cloudflare.com/pages/get-started/c3).
+# Embejayz rewards
+
+## Welcome to Embeejayz's GitHub Repository!
+
+Welcome, Embeejayz supporters, Twitch community members, and anyone passionate about gaming! This monorepo houses the various applications and tools that support Embeejayz's stream and the content we share. We truly appreciate any collaboration or contributions you make to these projects. Our goal is to create a safe, inclusive, and fun environment for everyone, just as it is for us.
+
+While this project is primarily focused on Embeejayz and his connection with T1 Esports, we welcome all fans – whether you're from G2 Esports, Gen.G, KT Rolster, or any other team. Our aim is to make this a safe space for all supporters, no matter which team you cheer for.
+
+We encourage any developer to fork, clone, or adapt these projects for their own streams or personal projects. It would make us happy to see our projects mentioned in your work, but there's absolutely no obligation. Most importantly, we encourage you to explore, contribute, and support the diverse ideas that help grow and enrich this ecosystem of projects we’ve created.
+
+We look forward to your involvement and contributions!
+
+## Rules for Contributing
+
+Please read our [contributions rules](./docs/RULES_FOR_CONTRIBUTING.md) for more information on how to contribute to this project.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more information.
+
+## Tech Stack
+
+- Vscode (Recommended IDE)
+- Nodejs
+- Pnpm (package manager)
+- React
+- Nextjs
+- Typescript
+- ESLint
+- Prettier
+- Commitlint
+- Husky
+- Lint-staged
 
 ## Getting Started
 
-First, run the development server:
+### Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Clone your forked repository
+2. Install dependencies
+
+```powershell
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Recommended Visual Studio Code Extensions** <br />
+   When you open this project in Visual Studio Code, it will automatically recommend the necessary extensions to ensure the project is set up correctly. These extensions help with code formatting, linting, and other development tasks. Make sure to install them when prompted to ensure a smooth development experience.
 
-## Cloudflare integration
+4. **Development**<br />
+   Running the Development Server <br />
 
-Besides the `dev` script mentioned above `c3` has added a few extra scripts that allow you to integrate the application with the [Cloudflare Pages](https://pages.cloudflare.com/) environment, these are:
+To start your local development environment, use the following command:
 
-- `pages:build` to build the application for Pages using the [`@cloudflare/next-on-pages`](https://github.com/cloudflare/next-on-pages) CLI
-- `preview` to locally preview your Pages application using the [Wrangler](https://developers.cloudflare.com/workers/wrangler/) CLI
-- `deploy` to deploy your Pages application using the [Wrangler](https://developers.cloudflare.com/workers/wrangler/) CLI
+```powershell
+pnpm dev
+```
 
-> **Note:** while the `dev` script is optimal for local development you should preview your Pages application as well (periodically or before deployments) in order to make sure that it can properly work in the Pages environment (for more details see the [`@cloudflare/next-on-pages` recommended workflow](https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md#recommended-development-workflow))
+5. **Previewing Production**<br />
+   Before submitting any changes, we highly recommend running the project in a production-like environment. To do this, run (linux terminal):
 
-### Bindings
+```bash
+pnpm preview
+```
 
-Cloudflare [Bindings](https://developers.cloudflare.com/pages/functions/bindings/) are what allows you to interact with resources available in the Cloudflare Platform.
-
-You can use bindings during development, when previewing locally your application and of course in the deployed application:
-
-- To use bindings in dev mode you need to define them in the `next.config.js` file under `setupDevBindings`, this mode uses the `next-dev` `@cloudflare/next-on-pages` submodule. For more details see its [documentation](https://github.com/cloudflare/next-on-pages/blob/05b6256/internal-packages/next-dev/README.md).
-
-- To use bindings in the preview mode you need to add them to the `pages:preview` script accordingly to the `wrangler pages dev` command. For more details see its [documentation](https://developers.cloudflare.com/workers/wrangler/commands/#dev-1) or the [Pages Bindings documentation](https://developers.cloudflare.com/pages/functions/bindings/).
-
-- To use bindings in the deployed application you will need to configure them in the Cloudflare [dashboard](https://dash.cloudflare.com/). For more details see the [Pages Bindings documentation](https://developers.cloudflare.com/pages/functions/bindings/).
-
-#### KV Example
-
-`c3` has added for you an example showing how you can use a KV binding.
-
-In order to enable the example:
-
-- Search for javascript/typescript lines containing the following comment:
-  ```ts
-  // KV Example:
-  ```
-  and uncomment the commented lines below it (also uncomment the relevant imports).
-- In the `wrangler.jsonc` file add the following configuration line:
-  ```
-  "kv_namespaces": [{ "binding": "MY_KV_NAMESPACE", "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }],
-  ```
-- If you're using TypeScript run the `cf-typegen` script to update the `env.d.ts` file:
-  ```bash
-  npm run cf-typegen
-  # or
-  yarn cf-typegen
-  # or
-  pnpm cf-typegen
-  # or
-  bun cf-typegen
-  ```
-
-After doing this you can run the `dev` or `preview` script and visit the `/api/hello` route to see the example in action.
-
-Finally, if you also want to see the example work in the deployed application make sure to add a `MY_KV_NAMESPACE` binding to your Pages application in its [dashboard kv bindings settings section](https://dash.cloudflare.com/?to=/:account/pages/view/:pages-project/settings/functions#kv_namespace_bindings_section). After having configured it make sure to re-deploy your application.
+This will give you a preview of how the project will behave in production, helping ensure that the changes you’ve made will appear as expected when deployed.
