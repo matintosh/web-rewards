@@ -13,7 +13,7 @@ export function RewardsAvailable() {
       </h2>
       <p className={styles['disclaimer']}>
         <strong className={montserrat.className}>Aviso Importante:</strong>{' '}
-        <br /> Los bordes obtenidos en esta plataforma son recompensas{' '}
+        <br /> Las recompensas obtenidas en esta plataforma son recompensas{' '}
         <i>coleccionables</i> y no tienen <i>valor monetario real</i>. No pueden
         ser comprados, vendidos, intercambiados ni canjeados por dinero, bienes
         o servicios, ni dentro de esta aplicación ni fuera de ella. Esta

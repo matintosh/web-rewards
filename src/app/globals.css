@@ -68,15 +68,18 @@
   scroll-behavior: smooth;
 }
 
-html,
-body {
-  scrollbar-gutter: stable;
-  margin: 0;
+html {
+  height: 100%;
+  overflow-y: auto;
   scrollbar-color: var(--ui-kit-primary-500) var(--ui-kit-neutral-950);
   scrollbar-width: thin;
+  scrollbar-gutter: stable;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
   background-image: linear-gradient(
     to bottom,
     var(--ui-kit-neutral-700),
@@ -86,10 +89,9 @@ body {
   );
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   color: var(--ui-kit-neutral-100);
   display: flex;
   flex: 1;
-  height: 100%;
-  min-height: 100dvh;
   width: 100%;
 }
