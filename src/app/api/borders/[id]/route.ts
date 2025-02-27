@@ -1,12 +1,13 @@
+import { UserBorderEntity } from '@/borders/models/entities/user-border.entity';
 import { BorderSort } from '@/borders/models/enums/border-sort';
 import { BordersOrderBy } from '@/borders/models/enums/borders-order-by.enum';
-import { borders } from '@public/data/boders.json';
-import { users } from '@public/data/users.json';
+import bordersJson from '@public/data/boders.json';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
 export function GET(request: NextRequest) {
+  const { borders } = bordersJson;
   const url = new URL(request.url);
   const searchParams = url.searchParams;
   const page = Number(searchParams.get('page') || 1);
@@ -21,10 +22,10 @@ export function GET(request: NextRequest) {
       : BorderSort.Asc;
   const filterByName = url.searchParams.get('filterByName') || '';
   const pathname = request.nextUrl.pathname;
-  const id = pathname.split('/')[3] as keyof typeof users;
-  if (!id)
+  const id = pathname.split('/')[3] as keyof typeof borders;
+  if (!id || !(id in borders))
     return NextResponse.json({ message: 'Border not found' }, { status: 404 });
-  const rewards = borders[id as keyof typeof borders];
+  const rewards = borders[id] as unknown as UserBorderEntity[];
   if (!rewards?.length)
     return NextResponse.json({ message: 'Border not found' }, { status: 404 });
 
@@ -50,34 +51,41 @@ function getPagination({
   pageSize = 10,
   sort = BorderSort.Desc, // Se usa el enum en lugar de string
   orderBy,
-}: any) {
+}: {
+  rewards: UserBorderEntity[];
+  filterByName: string;
+  page: number;
+  pageSize: number;
+  sort: string;
+  orderBy: BordersOrderBy;
+}) {
   if (page < 1) page = 1; // Evita páginas inválidas
 
   let filteredRewards = rewards;
 
   if (filterByName) {
-    filteredRewards = filteredRewards.filter((reward: any) =>
+    filteredRewards = filteredRewards.filter((reward) =>
       reward.name.toLowerCase().includes(filterByName.toLowerCase())
     );
   }
 
   // Aplicar ordenación
-  filteredRewards.sort((a: any, b: any) => {
+  filteredRewards.sort((a, b) => {
     if (orderBy === BordersOrderBy.Rank) {
       if (a.special !== b.special) {
+        const aSpecial = Number(a.special);
+        const bSpecial = Number(b.special);
         return sort === BorderSort.Asc
-          ? a.special - b.special
-          : b.special - a.special;
+          ? aSpecial - bSpecial
+          : bSpecial - aSpecial;
       }
       return sort === BorderSort.Asc
         ? a.quantity - b.quantity
         : b.quantity - a.quantity;
     } else {
       return sort === BorderSort.Asc
-        ? new Date(a.last_created_at).getTime() -
-            new Date(b.last_created_at).getTime()
-        : new Date(b.last_created_at).getTime() -
-            new Date(a.last_created_at).getTime();
+        ? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     }
   });
 

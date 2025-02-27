@@ -1,9 +1,10 @@
-import { users } from '@public/data/users.json';
+import usersJson from '@public/data/users.json';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
 export async function GET(req: NextRequest) {
+  const { users } = usersJson;
   const data = req.nextUrl.pathname;
   const id = data.split('/')[3] as keyof typeof users;
   if (!(id in users)) {

@@ -17,8 +17,8 @@ export function IconRank({ rank, width = 40, height = 40 }: Props) {
     <Image
       src={`${staticUrl}/icons/rank/${rank}.webp`}
       loading="lazy"
-      width={width}
       height={height}
+      width={width}
       alt={`Icon rank ${rank}`}
     />
   );

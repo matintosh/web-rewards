@@ -13,7 +13,7 @@ interface Props {
 
 const IconByRank = ({ rank }: { rank: Rank }) =>
   rank === Rank.Unranked ? (
-    <IconRank rank={rank} width={80} height={60} />
+    <IconRank rank={rank} width={80} height={63} />
   ) : (
     <IconRank rank={rank} width={80} height={80} />
   );

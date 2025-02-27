@@ -1,14 +1,19 @@
-import { getRanking } from '@/ranking/services/ranking';
+'use client';
+import { useGetRankingHook } from '@/ranking/hooks/use-get-ranking.hook';
 import { getRankByIndex } from '@/ranking/utils/get-rank-by-index';
 import { UserRanking } from '@/users/components/user-ranking';
 import styles from './list-ranking.module.css';
 
-export async function ListRanking() {
-  const { ranking } = await getRanking();
+export function ListRanking() {
+  const { ranking, isLoading, error } = useGetRankingHook();
+
+  if (isLoading) return <p>Loading...</p>;
+
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <ul className={styles.container}>
-      {ranking.map(({ id, username, quantityBorders }, idx) => (
+      {ranking?.map(({ id, username, quantityBorders }, idx) => (
         <li key={idx} className={styles['list-item']}>
           <UserRanking
             id={id}

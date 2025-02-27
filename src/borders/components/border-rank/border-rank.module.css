@@ -126,27 +126,51 @@
 }
 
 .username-master {
-  bottom: 14.6%;
+  bottom: 14.7%;
+  color: var(--ui-kit-neutral-100);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .username-diamond {
   bottom: 14.7%;
+  color: var(--ui-kit-neutral-100);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .username-platinium {
   bottom: 14.4%;
+  color: var(--ui-kit-neutral-100);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .username-gold {
   bottom: 14.5%;
+  color: var(--ui-kit-neutral-100);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .username-silver {
   bottom: 14.3%;
+  color: var(--ui-kit-neutral-100);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .username-bronze {
   bottom: 14.6%;
+  color: var(--ui-kit-neutral-100);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
 }
 
 /* Summoners Styles */
@@ -202,7 +226,9 @@
 /* Avatar Styles */
 
 .avatar {
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: absolute;
 }
 
@@ -221,10 +247,10 @@
 }
 
 .avatar-diamond {
-  bottom: 10px;
-  left: 20.5px;
-  height: 70px;
-  width: 70px;
+  bottom: 9.2px;
+  left: 20.8px;
+  height: 72px;
+  width: 72px;
 }
 
 .avatar-platinium {

@@ -1,4 +1,4 @@
-import { ExampleBorder } from '@/borders/components/example-border/example-border';
+import { ExampleBorder } from '@/borders/components/example-border';
 import { montserrat } from '@/consts/fonts';
 import { Slider } from '@/shared/components/slider';
 import { TwitchIcon } from '@/shared/svgs/icons';

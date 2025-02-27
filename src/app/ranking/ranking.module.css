@@ -1,9 +1,15 @@
 .container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 45px;
   padding: 25px;
   height: 100%;
   width: 100%;
+}
+
+.container h1 {
+  font-weight: var(--ui-kit-font-weight-black);
+  font-size: var(--ui-kit-size-4xl);
+  color: var(--ui-kit-secondary-400);
 }

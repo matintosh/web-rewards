@@ -1,5 +1,5 @@
 import { Rank } from '@/ranking/models/enums/rank.enum';
-import { BorderRank } from '../border-rank/border-rank';
+import { BorderRank } from '../border-rank';
 
 export function ExampleBorder() {
   return (
