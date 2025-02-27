@@ -67,8 +67,8 @@ export function RedeemBorders() {
               />
               <p className={styles['reward-detail-description']}>
                 Cada subscripción equivale un borde aletorio. Con las subs de
-                regalo puedes elegir tener el borde aleatorio o darsela a la
-                persona que recibió la sub.
+                regalo puedes elegir tener el borde aleatorio u obsequiarlo con
+                la subscripción.
               </p>
             </div>
           </div>
