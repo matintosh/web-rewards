@@ -21,6 +21,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Set environment variables for Next.js
+        run: |
+          echo "NEXT_PUBLIC_API_URL=https://api.example.com" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_STATIC_URL=${{ secrets.NEXT_PUBLIC_STATIC_URL }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_REWARDS_API_URL=${{ secrets.NEXT_PUBLIC_REWARDS_API_URL }}" >> $GITHUB_ENV
+          echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> $GITHUB_ENV
+
       - name: Build project
         run: pnpm run pages:build
 
