@@ -1,5 +1,6 @@
 import { staticUrl } from '@/core/client-settings';
 import { Rank } from '@/ranking/models/enums/rank.enum';
+import Image from 'next/image';
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -13,7 +14,7 @@ interface Props
 
 export function IconRank({ rank, width = 40, height = 40 }: Props) {
   return (
-    <img
+    <Image
       src={`${staticUrl}/icons/rank/${rank}.webp`}
       loading="lazy"
       width={width}
