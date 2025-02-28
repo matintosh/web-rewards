@@ -25,6 +25,7 @@
     "services",
     "workspace",
     "hooks",
-    "shared"
+    "shared",
+    "public"
   ]
 }
