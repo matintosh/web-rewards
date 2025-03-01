@@ -45,7 +45,8 @@ export function UserProfile({ id }: Props) {
       />
       <div className={styles.detail}>
         <h1 className={`${montserrat.className} ${styles.username}`}>
-          {username}
+          {username?.slice(0, 14)}
+          {username && username.length > 14 && '...'}
         </h1>
         {rank && (
           <IconRank

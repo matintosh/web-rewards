@@ -1,3 +1,4 @@
+import { FiltersBorders } from '@/borders/components/filters-borders';
 import { ListBorders } from '@/borders/components/list-borders';
 import { regexUUIDV4 } from '@/shared/utils/regex-uuid-v4';
 import { UserProfile } from '@/users/components/user-profile/user-profile';
@@ -17,8 +18,11 @@ export default async function UserPage({ params }: Props) {
 
   return (
     <main className={styles.container}>
-      <article className={styles['profile-container']}>
-        <UserProfile id={uuidV4} />
+      <article className={styles['filters-container']}>
+        <div className={styles['profile-container']}>
+          <UserProfile id={uuidV4} />
+        </div>
+        <FiltersBorders />
       </article>
       <section className={styles['borders-container']}>
         <ListBorders id={uuidV4} />

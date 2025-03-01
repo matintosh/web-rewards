@@ -23,7 +23,7 @@ export const getBordersByUserId = async ({
   borders: UserBorderEntity[];
   pagination: Pagination;
 }> => {
-  const url = new URL(`${rewardsApiUrl}/api/borders/${id}`);
+  const url = new URL(`${rewardsApiUrl}/borders/${id}`);
   url.searchParams.append('page', page.toString());
   if (filterByName) url.searchParams.append('filterByName', filterByName);
   url.searchParams.append('orderBy', orderBy);

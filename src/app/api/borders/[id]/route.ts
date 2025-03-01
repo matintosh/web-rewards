@@ -49,7 +49,7 @@ function getPagination({
   filterByName = '',
   page = 1,
   pageSize = 10,
-  sort = BorderSort.Desc, // Se usa el enum en lugar de string
+  sort = BorderSort.Desc,
   orderBy,
 }: {
   rewards: UserBorderEntity[];
@@ -59,7 +59,7 @@ function getPagination({
   sort: string;
   orderBy: BordersOrderBy;
 }) {
-  if (page < 1) page = 1; // Evita páginas inválidas
+  if (page < 1) page = 1;
 
   let filteredRewards = rewards;
 
@@ -92,13 +92,12 @@ function getPagination({
   // Paginación corregida
   const totalRecords = filteredRewards.length;
   const totalPages = Math.ceil(totalRecords / pageSize);
-  if (page > totalPages) page = totalPages; // Evita páginas fuera del límite
+  if (page > totalPages) page = totalPages;
 
   const start = (page - 1) * pageSize;
-  const end = Math.min(start + pageSize, totalRecords); // Evita salir del rango
+  const end = Math.min(start + pageSize, totalRecords);
 
   const paginatedRewards = filteredRewards.slice(start, end);
-
   return {
     borders: paginatedRewards,
     pagination: {

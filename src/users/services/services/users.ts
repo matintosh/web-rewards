@@ -5,7 +5,7 @@ import { UserRankEntity } from '../models/entities/user-rank.entity';
 export const getUserByUsername = async (
   username: string
 ): Promise<{ users: UserRankEntity[] }> => {
-  const res = await fetch(`${rewardsApiUrl}/api/users?username=${username}`, {
+  const res = await fetch(`${rewardsApiUrl}/users?username=${username}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -21,7 +21,7 @@ export const getUserByUsername = async (
 export const getUserById = async (
   id: string
 ): Promise<{ user: UserProfileEntity }> => {
-  const res = await fetch(`${rewardsApiUrl}/api/users/${id}`, {
+  const res = await fetch(`${rewardsApiUrl}/users/${id}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
