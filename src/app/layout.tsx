@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     'clasificatoria',
   ],
   openGraph: {
-    title: 'Embeejayz redes sociales',
+    title: 'Embeejayz recompensas',
     description:
       'Embeejayz recompensas del canal de Twitch, basadas en el competitivo de League of Legends, en el equipo de esport T1 y en el mismo canal de Embeejayz',
     url: '/',
