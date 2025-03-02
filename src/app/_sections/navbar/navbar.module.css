@@ -1,6 +1,7 @@
 .nav-container {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   height: fit-content;
   justify-content: center;
   gap: 35px;

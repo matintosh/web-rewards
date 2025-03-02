@@ -5,12 +5,12 @@ import { poppins } from '@/consts/fonts';
 import { InputOutline } from '@/shared/components/input-outline';
 import { ChevronSvg } from '@/shared/svgs/icons';
 import { Field, Form, Formik } from 'formik';
-import { useRouter, useSearchParams } from 'next/navigation'; // Importar useRouter
+import { useRouter, useSearchParams } from 'next/navigation';
 import styles from './form-filters.module.css';
 
 export function FiltersBorders() {
   const searchParams = useSearchParams();
-  const router = useRouter(); // Usar el hook useRouter
+  const router = useRouter();
 
   const queries = {
     orderBy: searchParams.get('orderBy') as BordersOrderBy,

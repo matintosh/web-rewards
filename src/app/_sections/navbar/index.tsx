@@ -1,6 +1,7 @@
 'use client';
 import { EmbeeLogo } from '@/shared/components/embee-logo';
 import { HomeIcon, RankingIcon } from '@/shared/svgs/icons';
+import { SearchUsers } from '@/users/components/search-users';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -68,6 +69,7 @@ export function Navbar() {
       </Link>
       <HomeLink />
       <RankingLink />
+      <SearchUsers />
     </nav>
   );
 }
