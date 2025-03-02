@@ -4,6 +4,7 @@ import { InputOutline } from '@/shared/components/input-outline';
 import { LensIcon } from '@/shared/svgs/icons';
 import { useDebounceUsersHook } from '@/users/hooks/use-debounce-users.hook';
 import { useSearchUsers } from '@/users/hooks/use-serach-users.hook';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './search-users.module.css';
@@ -72,7 +73,7 @@ export function SearchUsers() {
             className={styles['item-option']}
             onClick={() => router.push(`/user/${id.replace('?', '')}`)}
           >
-            <img
+            <Image
               className={styles.avatar}
               src={avatar}
               loading="lazy"
