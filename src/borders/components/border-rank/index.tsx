@@ -273,7 +273,7 @@ const BorderSilver = ({ url, name, username, avatarUrl }: BorderProps) => {
         </h3>
       </div>
       <div className={styles['border-container']}>
-        <BorderImage rank={Rank.Gold} />
+        <BorderImage rank={Rank.Silver} />
       </div>
       <p className={`${styles.username} ${styles['username-silver']}`}>
         {username}
