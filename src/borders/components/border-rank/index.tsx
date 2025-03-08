@@ -263,7 +263,7 @@ const BorderSilver = ({ url, name, username, avatarUrl }: BorderProps) => {
       <div
         className={`${styles['proplayer-container']} ${styles['proplayer-silver']}`}
       >
-        <BorderProplayer url={url} width={298} height={465} />
+        <BorderProplayer url={url} width={305} height={468} />
       </div>
       <div
         className={`${styles['card-name-container']} ${styles['card-name-silver']}`}
