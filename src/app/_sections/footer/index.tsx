@@ -3,6 +3,24 @@ import { EmbeeLogo } from '@/shared/components/embee-logo';
 import Link from 'next/link';
 import styles from './footer.module.css';
 
+const collaborators = [
+  {
+    username: 'GountzJs',
+    socialUrl: 'https://github.com/GountzJs',
+    url: '/avatars/gountz.avif',
+  },
+  {
+    username: 'Su1zide',
+    socialUrl: 'https://www.instagram.com/su1zide',
+    url: '/avatars/su1zide.avif',
+  },
+  {
+    username: 'Mari_yusi',
+    socialUrl: 'https://www.twitch.tv/mari_yusi',
+    url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/a4c4a605-4488-4f07-8b50-57d514879cba-profile_image-70x70.jpeg',
+  },
+];
+
 export function Footer() {
   return (
     <footer className={styles.container}>
@@ -54,16 +72,14 @@ export function Footer() {
       <div className={styles['collaborators-container']}>
         <p>Colaboradores:</p>
         <div className={styles['collaborators']}>
-          <Collaborator
-            username="GountzJs"
-            socialUrl="https://github.com/GountzJs"
-            url="/avatars/gountz.avif"
-          />
-          <Collaborator
-            username="Su1zide"
-            socialUrl="https://www.instagram.com/su1zide/"
-            url="/avatars/su1zide.avif"
-          />
+          {collaborators.map(({ username, socialUrl, url }, idx) => (
+            <Collaborator
+              key={idx}
+              username={username}
+              socialUrl={socialUrl}
+              url={url}
+            />
+          ))}
         </div>
       </div>
     </footer>
