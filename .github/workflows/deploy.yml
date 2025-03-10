@@ -26,8 +26,6 @@ jobs:
           echo "NEXT_PUBLIC_API_URL=https://api.example.com" >> $GITHUB_ENV
           echo "NEXT_PUBLIC_STATIC_URL=${{ secrets.NEXT_PUBLIC_STATIC_URL }}" >> $GITHUB_ENV
           echo "NEXT_PUBLIC_REWARDS_API_URL=${{ secrets.NEXT_PUBLIC_REWARDS_API_URL }}" >> $GITHUB_ENV
-          echo "TURSO_DATABASE_URL=${{ secrets.TURSO_DATABASE_URL }}" >> $GITHUB_ENV
-          echo "TURSO_AUTH_TOKEN=${{ secrets.TURSO_AUTH_TOKEN }}" >> $GITHUB_ENV
           echo "NODE_ENV=${{ secrets.NODE_ENV }}" >> $GITHUB_ENV
 
       - name: Build project

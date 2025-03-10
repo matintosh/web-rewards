@@ -1,120 +1,110 @@
-import db from '@/app/api/lib/drizzle';
+import { UserBorderEntity } from '@/borders/models/entities/user-border.entity';
 import { BorderSort } from '@/borders/models/enums/border-sort';
 import { BordersOrderBy } from '@/borders/models/enums/borders-order-by.enum';
-import { bordersSchema, userBordersSchema, userSchema } from '@/db/schema';
-import { and, asc, desc, eq, like, sql } from 'drizzle-orm';
+import bordersJson from '@public/data/boders.json';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
-export async function GET(request: NextRequest) {
-  try {
-    const pathname = request.nextUrl.pathname;
-    const id = pathname.split('/')[3];
+export function GET(request: NextRequest) {
+  const { borders } = bordersJson;
+  const url = new URL(request.url);
+  const searchParams = url.searchParams;
+  const page = Number(searchParams.get('page') || 1);
+  const pageSize = 8;
+  const orderBy =
+    url.searchParams.get('orderBy') === BordersOrderBy.Rank
+      ? BordersOrderBy.Rank
+      : BordersOrderBy.CreatedAt;
+  const sort =
+    url.searchParams.get('sort') === BorderSort.Desc
+      ? BorderSort.Desc
+      : BorderSort.Asc;
+  const filterByName = url.searchParams.get('filterByName') || '';
+  const pathname = request.nextUrl.pathname;
+  const id = pathname.split('/')[3] as keyof typeof borders;
+  if (!id || !(id in borders))
+    return NextResponse.json({ message: 'Border not found' }, { status: 404 });
+  const rewards = borders[id] as unknown as UserBorderEntity[];
+  if (!rewards?.length)
+    return NextResponse.json({ message: 'Border not found' }, { status: 404 });
 
-    if (!id) {
-      return NextResponse.json({ message: 'User not found' }, { status: 404 });
-    }
+  return NextResponse.json(
+    {
+      ...getPagination({
+        rewards,
+        filterByName,
+        page,
+        pageSize,
+        sort,
+        orderBy,
+      }),
+    },
+    { status: 200 }
+  );
+}
 
-    const url = new URL(request.url);
-    const searchParams = url.searchParams;
-    const page = Number(searchParams.get('page') || 1);
-    const pageSize = 10;
+function getPagination({
+  rewards,
+  filterByName = '',
+  page = 1,
+  pageSize = 10,
+  sort = BorderSort.Desc,
+  orderBy,
+}: {
+  rewards: UserBorderEntity[];
+  filterByName: string;
+  page: number;
+  pageSize: number;
+  sort: string;
+  orderBy: BordersOrderBy;
+}) {
+  if (page < 1) page = 1;
 
-    const orderBy =
-      searchParams.get('orderBy') === BordersOrderBy.Rank
-        ? BordersOrderBy.Rank
-        : BordersOrderBy.CreatedAt;
+  let filteredRewards = rewards;
 
-    const sort =
-      searchParams.get('sort') === BorderSort.Desc
-        ? BorderSort.Desc
-        : BorderSort.Asc;
-
-    const filterByName = searchParams.get('filterByName') || '';
-    const offset = (page - 1) * pageSize;
-
-    const conditions = [eq(userBordersSchema.userId, id)];
-    if (filterByName) {
-      conditions.push(like(bordersSchema.name, `%${filterByName}%`));
-    }
-
-    const dynamicOrderBy =
-      orderBy === BordersOrderBy.Rank
-        ? [
-            sort === BorderSort.Desc
-              ? desc(bordersSchema.special)
-              : asc(bordersSchema.special),
-            sort === BorderSort.Desc
-              ? desc(sql`COUNT(${userBordersSchema.id})`)
-              : asc(sql`COUNT(${userBordersSchema.id})`),
-            sort === BorderSort.Desc
-              ? desc(sql`MAX(${userBordersSchema.createdAt})`)
-              : asc(sql`MAX(${userBordersSchema.createdAt})`),
-          ]
-        : sort === BorderSort.Desc
-          ? [desc(sql`MAX(${userBordersSchema.createdAt})`)]
-          : [asc(sql`MAX(${userBordersSchema.createdAt})`)];
-
-    const bordersQuery = db
-      .select({
-        id: bordersSchema.id,
-        url: bordersSchema.url,
-        special: bordersSchema.special,
-        name: bordersSchema.name,
-        username: userSchema.login,
-        avatar: userSchema.profileImageUrl,
-        quantity: sql`COUNT(${userBordersSchema.id})`.as('quantity'),
-        lastCreatedAt: sql`MAX(${userBordersSchema.createdAt})`.as(
-          'lastCreatedAt'
-        ),
-      })
-      .from(userBordersSchema)
-      .innerJoin(
-        bordersSchema,
-        eq(userBordersSchema.borderId, bordersSchema.id)
-      )
-      .innerJoin(userSchema, eq(userSchema.id, userBordersSchema.userId))
-      .where(and(...conditions))
-      .groupBy(bordersSchema.id, userSchema.id)
-      .orderBy(...dynamicOrderBy)
-      .limit(pageSize)
-      .offset(offset);
-
-    const countQuery = db
-      .select({
-        total: sql`COUNT(DISTINCT ${bordersSchema.id})`.as('total'),
-      })
-      .from(bordersSchema)
-      .innerJoin(
-        userBordersSchema,
-        eq(userBordersSchema.borderId, bordersSchema.id)
-      )
-      .innerJoin(userSchema, eq(userSchema.id, userBordersSchema.userId))
-      .where(and(...conditions));
-
-    const countResult = await countQuery.execute();
-    const totalRecords = Number(countResult[0]?.total || 0);
-    const totalPages = Math.ceil(totalRecords / pageSize);
-
-    const rows = await bordersQuery;
-
-    return NextResponse.json(
-      {
-        borders: rows,
-        pagination: {
-          page,
-          pageSize,
-          totalRecords,
-          totalPages,
-        },
-      },
-      { status: 200 }
-    );
-  } catch {
-    return NextResponse.json(
-      { message: 'Generic error, please try again later' },
-      { status: 500 }
+  if (filterByName) {
+    filteredRewards = filteredRewards.filter((reward) =>
+      reward.name.toLowerCase().includes(filterByName.toLowerCase())
     );
   }
+
+  // Aplicar ordenación
+  filteredRewards.sort((a, b) => {
+    if (orderBy === BordersOrderBy.Rank) {
+      if (a.special !== b.special) {
+        const aSpecial = Number(a.special);
+        const bSpecial = Number(b.special);
+        return sort === BorderSort.Asc
+          ? aSpecial - bSpecial
+          : bSpecial - aSpecial;
+      }
+      return sort === BorderSort.Asc
+        ? a.quantity - b.quantity
+        : b.quantity - a.quantity;
+    } else {
+      return sort === BorderSort.Asc
+        ? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
+  });
+
+  // Paginación corregida
+  const totalRecords = filteredRewards.length;
+  const totalPages = Math.ceil(totalRecords / pageSize);
+  if (page > totalPages) page = totalPages;
+
+  const start = (page - 1) * pageSize;
+  const end = Math.min(start + pageSize, totalRecords);
+
+  const paginatedRewards = filteredRewards.slice(start, end);
+  return {
+    borders: paginatedRewards,
+    pagination: {
+      page,
+      pageSize,
+      totalRecords,
+      totalPages,
+    },
+  };
 }
