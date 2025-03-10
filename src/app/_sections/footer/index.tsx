@@ -1,6 +1,6 @@
 import { Collaborator } from '@/shared/components/collaborator';
-import { EmbeeLogo } from '@/shared/components/embee-logo';
 import Link from 'next/link';
+import { EmbeeLink } from './embee-link';
 import styles from './footer.module.css';
 
 const collaborators = [
@@ -61,14 +61,7 @@ export function Footer() {
           gracias!
         </p>
       </div>
-      <Link
-        href="https://links.embeejayz.com"
-        target="_blank"
-        className={styles['embee-link']}
-        aria-label="Embeejayz's social networks"
-      >
-        <EmbeeLogo size={40} /> Embeejayz
-      </Link>
+      <EmbeeLink />
       <div className={styles['collaborators-container']}>
         <p>Colaboradores:</p>
         <div className={styles['collaborators']}>
