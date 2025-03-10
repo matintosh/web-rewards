@@ -26,6 +26,7 @@
     "workspace",
     "hooks",
     "shared",
-    "public"
+    "public",
+    "api"
   ]
 }

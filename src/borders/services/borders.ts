@@ -23,19 +23,18 @@ export const getBordersByUserId = async ({
   borders: UserBorderEntity[];
   pagination: Pagination;
 }> => {
-  const url = new URL(`${rewardsApiUrl}/borders/${id}`);
-  url.searchParams.append('page', page.toString());
-  if (filterByName) url.searchParams.append('filterByName', filterByName);
-  url.searchParams.append('orderBy', orderBy);
-  url.searchParams.append('sort', sort);
-  const res = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    cache: 'no-store',
-  });
+  const url = `${rewardsApiUrl}/borders/${id}`;
+  const res = await fetch(
+    `${url}?page=${page}&${filterByName ? `filterByName=${filterByName}$` : ''}orderBy=${orderBy}&sort=${sort}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      cache: 'no-store',
+    }
+  );
 
   const data = await res.json();
   if (!res.ok) throw data;

@@ -6,7 +6,11 @@ import { getRanking } from '../services/ranking';
 export function useGetRankingHook() {
   const { data, error, isLoading } = useSWR<
     { ranking: UserRankEntity[] },
-    Error
+    Error,
+    {
+      revalidateOnFocus: false;
+      shouldRetryOnError: false;
+    }
   >('ranking', getRanking);
 
   return {
