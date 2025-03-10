@@ -4,7 +4,7 @@
   color: var(--ui-kit-neutral-100);
   outline: 2px solid var(--ui-kit-secondary-400);
   font-size: var(--ui-kit-size-lg);
-  font-weight: var(--ui-kit-font-weight-regular);
+  font-weight: var(--ui-kit-font-weight-normal);
   border-radius: 4px;
   padding: 12px 16px 12px 36px;
   height: fit-content;

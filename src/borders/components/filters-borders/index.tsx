@@ -52,7 +52,7 @@ export function FiltersBorders() {
           <InputOutline
             type="text"
             name="search"
-            placeholder="Buscar"
+            placeholder="Buscar proplayer"
             onChange={handleChange}
             error={Boolean(touched.search && errors.search)}
             style={{

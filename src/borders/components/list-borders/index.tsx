@@ -23,17 +23,21 @@ export function ListBorders({ id }: Props) {
   return (
     <div className={styles.container}>
       <ul className={styles['list-borders-container']}>
-        {data?.map(({ id, url, special, username, avatar, quantity, name }) => (
-          <li key={id} className={styles['list-item']}>
-            <BorderRank
-              name={name}
-              rank={special ? Rank.Challenger : quantityBorderToRank(quantity)}
-              url={url}
-              username={username}
-              avatarUrl={avatar}
-            />
-          </li>
-        ))}
+        {data?.map(
+          ({ url, special, username, avatar, quantity, name }, idx) => (
+            <li key={idx} className={styles['list-item']}>
+              <BorderRank
+                name={name}
+                rank={
+                  special ? Rank.Challenger : quantityBorderToRank(quantity)
+                }
+                url={url}
+                username={username}
+                avatarUrl={avatar}
+              />
+            </li>
+          )
+        )}
       </ul>
       {!isReachingEnd && (
         <InfiniteScrollObserver onIntersect={loadMore} isLoading={isLoading} />

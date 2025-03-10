@@ -11,7 +11,7 @@ export function GET(request: NextRequest) {
   const url = new URL(request.url);
   const searchParams = url.searchParams;
   const page = Number(searchParams.get('page') || 1);
-  const pageSize = 8;
+  const pageSize = 10;
   const orderBy =
     url.searchParams.get('orderBy') === BordersOrderBy.Rank
       ? BordersOrderBy.Rank

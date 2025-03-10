@@ -54,7 +54,7 @@ export function SearchUsers() {
           type="text"
           name="search-user"
           className={styles['input-search']}
-          placeholder="Buscar"
+          placeholder="Buscar usuario"
           value={search}
           onFocus={() => setIsTouched(true)}
           onBlur={() => setIsTouched(false)}
