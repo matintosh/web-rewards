@@ -48,3 +48,7 @@
     scale: 1.1;
   }
 }
+
+.rotate180 {
+  transform: rotate(180);  
+}
