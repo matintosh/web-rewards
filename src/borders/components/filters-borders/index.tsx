@@ -104,7 +104,7 @@ export function FiltersBorders() {
                     ? 'var(--ui-kit-primary-500)'
                     : 'var(--ui-kit-neutral-100)'
                 }
-                className={`${styles.rotate180}`}
+                className={`${styles['chevron-asc']}`}
                 width={30}
                 height={30}
               />

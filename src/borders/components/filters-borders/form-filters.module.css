@@ -49,6 +49,6 @@
   }
 }
 
-.rotate180 {
-  transform: rotate(180);  
+.chevron-asc {
+  transform: rotate(180deg);  
 }
